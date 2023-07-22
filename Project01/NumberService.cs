@@ -34,6 +34,10 @@ namespace Project01
         //Quest03
         public bool CheckEasyNumbers(int inputNum)
         {
+            if (inputNum == 1)
+            {
+                return false;
+            }
             if (inputNum == 2)
             {
                 return true;
@@ -85,8 +89,8 @@ namespace Project01
                 int numOne = random.Next(int.MinValue, int.MaxValue);
                 numberOfNumbers++;
                 added = added + numOne;
-                average = (double)added / (double)numberOfNumbers;
             }
+            average = (double)added / (double)numberOfNumbers;
             return average;
         }
         //Quest06
@@ -100,14 +104,147 @@ namespace Project01
                 int numOne = random.Next(int.MinValue, int.MaxValue);
                 if (numOne <= numMin)
                 {
-                    int numMax = numMin;
                     numMin = numOne;
-                    numOne = numMax;
                     result = numMin;
+                }
+            }
+            return result;
+        }
+        //Quest07
+        public int FindMaxNumber(int inputNum)
+        {
+            Random random = new Random();
+            int numMax = int.MinValue;
+            for (int i = 0; i < inputNum; i++)
+            {
+                int numOne = random.Next(int.MinValue, int.MaxValue);
+                if (numOne >= numMax)
+                {
+                    numMax = numOne;
+                }
+            }
+            return numMax;
+        }
+        //Quest08
+        public int GetNumberOfEvenNumbers(int inputNum)
+        {
+            Random random = new Random();
+            int numberOfNumbers = 0;
+            for (int i = 0; i < inputNum; i++)
+            {
+                int numRandom = random.Next(int.MinValue, int.MaxValue);
+                if (numRandom % 2 == 0)
+                {
+                    numberOfNumbers++;
+                }
+            }
+            return numberOfNumbers;
+        }
+        //Quest09
+        public int GetNumberOfOddNumbers(int inputNum)
+        {
+            Random random = new Random();
+            int numberOfNumbers = 0;
+            for (int i = 0; i < inputNum; i++)
+            {
+                int numRandom = random.Next(int.MinValue, int.MaxValue);
+                if (!(numRandom % 2 == 0))
+                {
+                    numberOfNumbers++;
+                }
+            }
+            return numberOfNumbers;
+        }
+        //Quest10
+        public int GetNumberOfPositiveNumbers(int inputNum)
+        {
+            Random random = new Random();
+            int numberOfNumbers = 0;
+            for (int i = 0; i < inputNum; i++)
+            {
+                int numRandom = random.Next(int.MinValue, int.MaxValue);
+                if (numRandom > 0)
+                {
+                    numberOfNumbers++;
+                }
+            }
+            return numberOfNumbers;
+        }
+        //Quest11
+        public int GetNumberOfNegativeNumbers(int inputNum)
+        {
+            Random random = new Random();
+            int numberOfNumbers = 0;
+            for (int i = 0; i < inputNum; i++)
+            {
+                int numRandom = random.Next(int.MinValue, int.MaxValue);
+                if (numRandom < 0)
+                {
+                    numberOfNumbers++;
+                }
+            }
+            return numberOfNumbers;
+        }
+        //Quest12
+        public string FlipNumber(int inputNum)
+        {
+            TextService textService = new TextService();
+            int numEnter = inputNum;
+            int numberOfDigits = 1;
+            for (int i = 0; i < int.MaxValue; i++, numberOfDigits++)
+            {
+                if (numEnter / 10 == 0)
+                {
+                    break;
+                }
+                numEnter = numEnter / 10;
+            }
+            int divider = 1;
+            string result = "";
+            for (int i = 0; i < numberOfDigits; i++, divider *= 10)
+            {
+                int numOne = inputNum / divider % 10;
+                result = textService.AddText(result, numOne);
+            }
+            return result;
+        }
+        //Quest13
+        public double GetDebt(int firstNumber, int percentOfBank, int months)
+        {
+            double realPercent = (double)percentOfBank / 100;
+            double result = (double)firstNumber;
+            for (int i = 0; i < months; i++)
+            {
+                result = result + result * (double)realPercent;
+            }
+            return result;
+        }
+        //Quest14
+        public double GetWhat(int inputNum, int degree)
+        {
+            if (degree == 0)
+            {
+                return 1;
+            }
+            double result = (double)inputNum;
+            if (degree > 0)
+            {
+                for (int i = 1; i < degree; i++)
+                {
+                    result = result * inputNum;
+                }
+            }
+            if (degree < 0)
+            {
+                result = 1;
+                for (int i = 0; i > degree; i--)
+                {
+                    result = result / (double)inputNum;
                 }
             }
             return result;
         }
     }
 }
+
 
