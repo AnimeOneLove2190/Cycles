@@ -16,7 +16,7 @@ namespace Project01
             numberService.WriteEvenNumbers(inputNumTwo);
             //Quest03
             int inputNumThree = int.Parse(Console.ReadLine());
-            bool numberIsEasy = numberService.CheckEasyNumbers(inputNumThree);
+            bool numberIsEasy = numberService.IsPrimeNumber(inputNumThree);
             Console.WriteLine(numberIsEasy);
             //Quest04
             int inputNumFour = int.Parse(Console.ReadLine());
@@ -36,34 +36,34 @@ namespace Project01
             Console.WriteLine(resultMaxOfEnteredNumbers);
             //Quest08
             int inputNumEight = int.Parse(Console.ReadLine());
-            int resultNumberOfEvenNumbers = numberService.GetNumberOfEvenNumbers(inputNumEight);
+            int resultNumberOfEvenNumbers = numberService.GetCountEvenNumbers(inputNumEight);
             Console.WriteLine(resultNumberOfEvenNumbers);
             //Quest09
             int inputNumNine = int.Parse(Console.ReadLine());
-            int resultNumberOfOddNumbers = numberService.GetNumberOfOddNumbers(inputNumNine);
+            int resultNumberOfOddNumbers = numberService.GetCountOddNumbers(inputNumNine);
             Console.WriteLine(resultNumberOfOddNumbers);
             //Quest10
             int inputNumTen = int.Parse(Console.ReadLine());
-            int resultNumberOfPositiveNumbers = numberService.GetNumberOfPositiveNumbers(inputNumTen);
+            int resultNumberOfPositiveNumbers = numberService.GetCountPositiveNumbers(inputNumTen);
             Console.WriteLine(resultNumberOfPositiveNumbers);
             //Quest11
             int inputNumEleven = int.Parse(Console.ReadLine());
-            int resultNumberOfNegativeNumbers = numberService.GetNumberOfNegativeNumbers(inputNumEleven);
+            int resultNumberOfNegativeNumbers = numberService.GetCountNegativeNumbers(inputNumEleven);
             Console.WriteLine(resultNumberOfNegativeNumbers);
             //Quest12
             int inputNumTwelve = int.Parse(Console.ReadLine());
-            string resultFlipNumber = numberService.FlipNumber(inputNumTwelve);
+            int resultFlipNumber = numberService.ReverseNumber(inputNumTwelve);
             Console.WriteLine(resultFlipNumber);
             //Quest13
             int firstNumber = int.Parse(Console.ReadLine());
             int percentOfBank = int.Parse(Console.ReadLine());
             int months = int.Parse(Console.ReadLine());
-            double resultDebt = numberService.GetDebt(firstNumber, percentOfBank, months);
+            double resultDebt = numberService.GetDepositAmount(firstNumber, percentOfBank, months);
             Console.WriteLine(resultDebt);
             //Quest14
             int inputNumFourteen = int.Parse(Console.ReadLine());
             int inputDegree = int.Parse(Console.ReadLine());
-            double resultWhat = numberService.GetWhat(inputNumFourteen, inputDegree);
+            double resultWhat = numberService.Exponentiate(inputNumFourteen, inputDegree);
             Console.WriteLine(resultWhat);
         }
     }

@@ -7,14 +7,12 @@ namespace Project01
     class NumberService
     {
         //Quest01
-        public int AddUpTheNumbers(int inputNum)
+        public int AddUpTheNumbers(int ToNumber)
         {
             int result = 0;
-            int numAdd = 0;
-            for (int i = 0; i < inputNum; i++)
+            for (int i = 0; i < ToNumber; i++)
             {
-                numAdd++;
-                result = result + numAdd;
+                result = result + i;
             }
             return result;
         }
@@ -23,8 +21,7 @@ namespace Project01
         {
             for (int i = 0; i <= inputNum; i++)
             {
-                int conditionalEven = i % 2;
-                if (conditionalEven == 1)
+                if (i % 2 == 0)
                 {
                     continue;
                 }
@@ -32,7 +29,7 @@ namespace Project01
             }
         }
         //Quest03
-        public bool CheckEasyNumbers(int inputNum)
+        public bool IsPrimeNumber(int inputNum)
         {
             if (inputNum == 1)
             {
@@ -42,33 +39,21 @@ namespace Project01
             {
                 return true;
             }
-            int division = 0;
-            int numberAdd = 2;
-            for (int i = 2; i < inputNum; i++)
+            for (int divider = 2; divider < inputNum; divider++)
             {
-
-                division = inputNum % numberAdd;
-                numberAdd++;
-                if (division == 0)
+                if (inputNum % divider == 0)
                 {
-                    break;
+                    return false;
                 }
             }
-            if (!(division == 0))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return true;
         }
         //Quest04
-        public int AddReadNumbers(int inputNum)
+        public int AddReadNumbers(int countNumbers)
         {
             Random random = new Random();
             int result = 0;
-            for (int i = 0; i < inputNum; i++)
+            for (int i = 0; i < countNumbers; i++)
             {
 
                 int numOne = random.Next(int.MinValue, int.MaxValue);
@@ -77,38 +62,33 @@ namespace Project01
             return result;
         }
         //Quest05
-        public double AverageOfNumbers(int inputNum)
+        public double AverageOfNumbers(int amountOfNumbers)
         {
             Random random = new Random();
             int added = 0;
-            double average = 0;
-            int numberOfNumbers = 0;
-            for (int i = 0; i < inputNum; i++)
+            for (int i = 0; i < amountOfNumbers; i++)
             {
 
                 int numOne = random.Next(int.MinValue, int.MaxValue);
-                numberOfNumbers++;
-                added = added + numOne;
+                added += numOne;
             }
-            average = (double)added / (double)numberOfNumbers;
+            double average = (double)added / (double)amountOfNumbers;
             return average;
         }
         //Quest06
-        public int FindMinNumbers(int inputNum)
+        public int FindMinNumbers(int amountOfNumbers)
         {
             Random random = new Random();
             int numMin = int.MaxValue;
-            int result = 0;
-            for (int i = 0; i < inputNum; i++)
+            for (int i = 0; i < amountOfNumbers; i++)
             {
-                int numOne = random.Next(int.MinValue, int.MaxValue);
-                if (numOne <= numMin)
+                int currentNum = random.Next(int.MinValue, int.MaxValue);
+                if (currentNum < numMin)
                 {
-                    numMin = numOne;
-                    result = numMin;
+                    numMin = currentNum;
                 }
             }
-            return result;
+            return numMin;
         }
         //Quest07
         public int FindMaxNumber(int inputNum)
@@ -118,7 +98,7 @@ namespace Project01
             for (int i = 0; i < inputNum; i++)
             {
                 int numOne = random.Next(int.MinValue, int.MaxValue);
-                if (numOne >= numMax)
+                if (numOne > numMax)
                 {
                     numMax = numOne;
                 }
@@ -126,7 +106,7 @@ namespace Project01
             return numMax;
         }
         //Quest08
-        public int GetNumberOfEvenNumbers(int inputNum)
+        public int GetCountEvenNumbers(int inputNum)
         {
             Random random = new Random();
             int numberOfNumbers = 0;
@@ -141,7 +121,7 @@ namespace Project01
             return numberOfNumbers;
         }
         //Quest09
-        public int GetNumberOfOddNumbers(int inputNum)
+        public int GetCountOddNumbers(int inputNum)
         {
             Random random = new Random();
             int numberOfNumbers = 0;
@@ -156,7 +136,7 @@ namespace Project01
             return numberOfNumbers;
         }
         //Quest10
-        public int GetNumberOfPositiveNumbers(int inputNum)
+        public int GetCountPositiveNumbers(int inputNum)
         {
             Random random = new Random();
             int numberOfNumbers = 0;
@@ -171,7 +151,7 @@ namespace Project01
             return numberOfNumbers;
         }
         //Quest11
-        public int GetNumberOfNegativeNumbers(int inputNum)
+        public int GetCountNegativeNumbers(int inputNum)
         {
             Random random = new Random();
             int numberOfNumbers = 0;
@@ -186,52 +166,52 @@ namespace Project01
             return numberOfNumbers;
         }
         //Quest12
-        public string FlipNumber(int inputNum)
+        public int ReverseNumber(int number)
         {
             TextService textService = new TextService();
-            int numEnter = inputNum;
-            int numberOfDigits = 1;
-            for (int i = 0; i < int.MaxValue; i++, numberOfDigits++)
-            {
-                if (numEnter / 10 == 0)
-                {
-                    break;
-                }
-                numEnter = numEnter / 10;
-            }
+            int CountDigits = GetCountDigits(number);
             int divider = 1;
-            string result = "";
-            for (int i = 0; i < numberOfDigits; i++, divider *= 10)
+            int result = 0;
+            for (int i = 0; i < CountDigits; i++, divider *= 10)
             {
-                int numOne = inputNum / divider % 10;
-                result = textService.AddText(result, numOne);
+                int CurrentNum = number / divider % 10;
+                result = result * 10 + CurrentNum;
             }
             return result;
         }
+        public int GetCountDigits(int number)
+        {
+            int CountDigits = 1;
+            for (; number / 10 != 0; CountDigits++)
+            {
+                number /= 10;
+            }
+            return CountDigits;
+        }
         //Quest13
-        public double GetDebt(int firstNumber, int percentOfBank, int months)
+        public double GetDepositAmount(int depositAmount, int percentOfBank, int countMonths)
         {
             double realPercent = (double)percentOfBank / 100;
-            double result = (double)firstNumber;
-            for (int i = 0; i < months; i++)
+            double result = (double)depositAmount;
+            for (int i = 0; i < countMonths; i++)
             {
                 result = result + result * (double)realPercent;
             }
             return result;
         }
         //Quest14
-        public double GetWhat(int inputNum, int degree)
+        public double Exponentiate(int raisedNumber, int degree)
         {
             if (degree == 0)
             {
                 return 1;
             }
-            double result = (double)inputNum;
+            double result = (double)raisedNumber;
             if (degree > 0)
             {
                 for (int i = 1; i < degree; i++)
                 {
-                    result = result * inputNum;
+                    result = result * raisedNumber;
                 }
             }
             if (degree < 0)
@@ -239,7 +219,7 @@ namespace Project01
                 result = 1;
                 for (int i = 0; i > degree; i--)
                 {
-                    result = result / (double)inputNum;
+                    result = result / (double)raisedNumber;
                 }
             }
             return result;
